@@ -3,6 +3,7 @@
 Implement option critic for atari in pytorch.
 
 There are **two** kinds of files.
+
 **for one** 
 * _main.py_
 * _option_critic.py_
