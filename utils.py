@@ -5,9 +5,6 @@ from wrappers import make_atari, wrap_deepmind, wrap_pytorch
 from gym.wrappers import AtariPreprocessing, TransformReward
 from gym.wrappers import FrameStack as FrameStack_
 
-from fourrooms import Fourrooms
-
-
 class LazyFrames(object):
     def __init__(self, frames):
         self._frames = frames
@@ -35,15 +32,8 @@ class FrameStack(FrameStack_):
 
 def make_env(env_name):
 
-    if env_name == 'fourrooms':
-        return Fourrooms(), False
-
     env = gym.make(env_name)
     is_atari = hasattr(gym.envs, 'atari') and isinstance(env.unwrapped, gym.envs.atari.environment.AtariEnv)
-    # if is_atari:
-    #     env = AtariPreprocessing(env, grayscale_obs=True, scale_obs=True, terminal_on_life_loss=True)
-    #     env = TransformReward(env, lambda r: np.clip(r, -1, 1))
-    #     env = FrameStack(env, 4)
     return env, is_atari
 
 def to_tensor(obs):
